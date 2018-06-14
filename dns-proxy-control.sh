@@ -50,6 +50,7 @@ Stop() {
     do 
         sudo systemctl $cmd dns-proxy.service
     done
+	sudo systemctl daemon-reload
 }
 
 Status() {

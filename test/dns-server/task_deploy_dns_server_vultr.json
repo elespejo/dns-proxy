@@ -1,0 +1,13 @@
+[
+    {
+        "Topic": "deploy dns proxy",
+        "Tasks": [
+        	"cd $HOME",
+        	"rm -f dns-proxy*.zip",
+            "wget https://github.com/meninasx86/dns-proxy/releases/download/0.0.1/dns-proxy-0.0.1.zip",
+			"unzip dns-proxy-0.0.1.zip",
+            "cd dns-proxy",
+            "sudo ./dns-proxy-control.sh install ens3 15360:15370"
+        ]
+    }
+] 

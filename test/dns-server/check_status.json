@@ -1,0 +1,9 @@
+[
+    {
+        "Topic": "check dns-proxy status",
+        "Tasks": [
+            "cd dns-proxy",
+            "sudo ./dns-proxy-control.sh status"
+        ]
+    }
+] 

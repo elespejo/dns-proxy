@@ -1,0 +1,11 @@
+[
+    {
+        "Topic": "uninstall dns-proxy",
+        "Tasks": [
+            "cd $HOME/dns-proxy",
+            "sudo ./dns-proxy-control.sh uninstall",
+            "cd $HOME",
+            "rm -rf dns-proxy*"
+        ]
+    }
+] 
