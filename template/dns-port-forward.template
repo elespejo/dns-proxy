@@ -17,11 +17,11 @@ Parameter_judge() {
 }
 
 Get_IP() {
-    echo `ifconfig $WAN | grep 'inet addr' | awk -F ':' '{print $2}' | awk '{print $1}'`
+    echo `ifconfig $WAN | grep 'inet ' | awk -F ' ' '{print $2}'`
 }
 
 Get_dns_server() {
-    echo `cat /etc/resolv.conf | grep nameserver | head -n 1 | awk '{print $2}'`
+    echo "8.8.8.8"
 }
 
 IP=`Get_IP`
