@@ -1,0 +1,18 @@
+#!/bin/bash
+
+## Accept WAN and DNSPORT as arguments 
+
+DNSIP=8.8.8.8
+
+Get_IP() {
+    echo `ifconfig $WAN | grep 'inet addr' | awk -F ':' '{print $2}' | awk '{print $1}'`
+}
+
+IP=`Get_IP`
+
+clean() {
+    iptables -t nat -D PREROUTING -p udp --dport $DNSPORT -j DNAT --to-destination $DNSIP:53
+    iptables -t nat -D POSTROUTING -p udp -d $DNSIP --dport 53 -j SNAT --to-source $IP 
+}
+
+clean
