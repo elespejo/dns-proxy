@@ -2,55 +2,55 @@
 
 Port forward solution of anti dns pollution
 
-# Deployment [for end user]
+# Deployment (for end user)
 
 ### Through script
 
 * Fetch the code
-```
-git clone https://github.com/meninasx86/dns-proxy.git
-```
+  ```
+  git clone https://github.com/meninasx86/dns-proxy.git
+  ```
 
 * Start dns proxy
-```
-./ctl start <WAN> <PORT RANGE>
-```
+  ```
+  ./ctl start <WAN> <PORT RANGE>
+  ```
 
-in which, 
+  in which, 
+    * `WAN}` is the WAN interface in the VPS 
+    * `PORTRANGE` is the port range in syntax `start_port:end_port` 
+  eg,
 
-  * `${WAN}` is the WAN interface in the VPS 
-  * `${PORTRANGE}` is the port range in syntax `start_port:end_port` 
-
-```
-./ctl start eth0 12345:12350 
-```
+    ```
+    ./ctl start eth0 12345:12350 
+    ```
 
 * Check the status
-```
-./ctl status
-```
+  ```
+  ./ctl status
+  ```
 
 * Stop dns proxy
-```
-./ctl stop
-```
+  ```
+  ./ctl stop
+  ```
 
 ### Through docker cli
 
 * Start dns proxy 
-```
-docker run -itd --restart=always --cap-add=NET_ADMIN --network=host --name dns_proxy --privileged -e WAN=${WAN} -e DNSPORT=${PORTRANGE} meninasx86/dns-proxy:test 
-``` 
+  ```
+  docker run -itd --restart=always --cap-add=NET_ADMIN --network=host --name dns_proxy --privileged -e WAN=${WAN} -e DNSPORT=${PORTRANGE} meninasx86/dns-proxy:test 
+  ``` 
 
-in which, 
+  in which, 
 
-  * `${WAN}` is the WAN interface in the VPS 
-  * `${PORTRANGE}` is the port range in syntax `start_port:end_port` 
+    * `${WAN}` is the WAN interface in the VPS 
+    * `${PORTRANGE}` is the port range in syntax `start_port:end_port` 
 
 * Stop 
-```
-docker exec -it dns_proxy ./clean 
-```
+  ```
+  docker exec -it dns_proxy ./clean 
+  ```
 
 # Getting Started [for developer]
 
