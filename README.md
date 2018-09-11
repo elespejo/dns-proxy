@@ -17,8 +17,9 @@ Port forward solution of anti dns pollution
   ```
 
   in which, 
-    * `WAN}` is the WAN interface in the VPS 
+    * `WAN` is the WAN interface in the VPS 
     * `PORTRANGE` is the port range in syntax `start_port:end_port` 
+
   eg,
 
     ```
@@ -52,7 +53,7 @@ Port forward solution of anti dns pollution
   docker exec -it dns_proxy ./clean 
   ```
 
-# Getting Started [for developer]
+# Getting Started (for developer)
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. 
 
@@ -84,7 +85,7 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ### Authors
 
-* **mateomartin1998** - *Initial work* - [meninasx86](https://github.com/mateomartin1998)
+* **mateomartin1998** - *Initial work* - [mateomartin1998](https://github.com/mateomartin1998)
 
 See also the list of [contributors](https://github.com/meninasx86/dns-proxy/graphs/contributors) who participated in this project.
 
