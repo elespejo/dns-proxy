@@ -27,14 +27,12 @@ START(){
 }
 
 STOP(){
-    if [ "$#" -ne 2 ]; then
+    if [ "$#" -ne 0 ]; then
         Usage
     fi
 
-    WAN=$1 
-    DNSPORT=$2
 
-    docker exec -itd -e WAN=${WAN} -e DNSPORT=${DNSPORT} ${container} ./clean 
+    docker exec -itd ${container} ./clean 
     docker rm -f ${container}
 }
 
@@ -52,7 +50,7 @@ else
             STATUS
             ;;
         stop)
-            STOP $2 $3
+            STOP
             STATUS
             ;;
         status)
