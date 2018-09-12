@@ -1,4 +1,4 @@
-# DNS-Proxy 
+# dns-proxy 
 
 Port forward solution of anti dns pollution
 
