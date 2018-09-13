@@ -1,11 +1,11 @@
-# dns-proxy [![GitHub release](https://img.shields.io/github/release/elespejo/dns-proxy.svg)](https://github.com/elespejo/dns-proxy/releases)
+# dns-proxy 
+
+[![GitHub release](https://img.shields.io/github/release/elespejo/dns-proxy.svg)](https://github.com/elespejo/dns-proxy/releases)
+![Github All Releases](https://img.shields.io/github/downloads/elespejo/dns-proxy/total.svg)
+[![Docker Pulls](https://img.shields.io/docker/pulls/elespejo/dns-proxy-x86.svg)](https://hub.docker.com/r/elespejo/dns-proxy/tags/)
 
 [![Docker Automated build](https://img.shields.io/docker/automated/elespejo/dns-proxy-x86.svg)](https://hub.docker.com/r/elespejo/dns-proxy-x86/)
 [![Docker Build Status](https://img.shields.io/docker/build/elespejo/dns-proxy-x86.svg)](https://hub.docker.com/r/elespejo/dns-proxy-x86/builds/)
-
-
-![Github All Releases](https://img.shields.io/github/downloads/elespejo/dns-proxy/total.svg)
-[![Docker Pulls](https://img.shields.io/docker/pulls/elespejo/dns-proxy-x86.svg)](https://hub.docker.com/r/elespejo/dns-proxy/tags/)
 
 ![GitHub](https://img.shields.io/github/license/elespejo/dns-proxy.svg)
 
