@@ -1,5 +1,16 @@
 # dns-proxy 
 
+[![Docker Automated build](https://img.shields.io/docker/automated/elespejo/dns-proxy-x86.svg)](https://hub.docker.com/r/elespejo/dns-proxy-x86/)
+[![Docker Build Status](https://img.shields.io/docker/build/elespejo/dns-proxy-x86.svg)](https://hub.docker.com/r/elespejo/dns-proxy-x86/builds/)
+
+[![GitHub release](https://img.shields.io/github/release/elespejo/dns-proxy.svg)](https://github.com/elespejo/dns-proxy/releases)
+![Github All Releases](https://img.shields.io/github/downloads/elespejo/dns-proxy/total.svg)
+[![Docker Pulls](https://img.shields.io/docker/pulls/elespejo/dns-proxy-x86.svg)](https://hub.docker.com/r/elespejo/dns-proxy/tags/)
+
+![GitHub](https://img.shields.io/github/license/elespejo/dns-proxy.svg)
+
+
+
 Port forward solution of anti dns pollution
 
 [![Alt text](https://www.lucidchart.com/publicSegments/view/fd12f5ad-ac4c-4e36-99d1-d806c6b07ae0/image.png)](https://www.lucidchart.com/publicSegments/view/fd12f5ad-ac4c-4e36-99d1-d806c6b07ae0/image.png)
