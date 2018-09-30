@@ -1,7 +1,7 @@
 #!/bin/bash
 filename="$0"
-image="meninasx86/dns-proxy"
-version="test"
+image="elespejo/dns-proxy-x86"
+version="0.0.1"
 container="dns-proxy"
 
 Usage(){
