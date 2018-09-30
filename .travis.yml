@@ -1,0 +1,26 @@
+language: generic
+sudo: false
+dist: trusty
+branches:
+  only:
+  - "/^\\d+(\\.\\d+){2}$/"
+env:
+  global:
+  - PROJECT="dns-proxy"
+  - VERSION="$TRAVIS_TAG"
+
+install: true
+
+script: 
+  - ./build_release.sh ${VERSION} 
+
+deploy:
+  provider: releases
+  skip_cleanup: true
+  api_key:
+    secure: TtDxwWg4F+qp6N0LmfasEMizwZ4xnXtfRTPF06/dFKoPTxXmLxF+jmRUz/1RQ7b/tP1L5YDb6/+DzSMmzXmuHW+yG3s7vS3rO6wGqK7cEc3xrAnhluG1Uk/54C35FYdFTXqwA+Sk7goLbGu58Ia6kDNwKkUL40L7lqipPOS6vUCbafTpyaCOgXzx5he1C/jIY3TYcE7n0JaVsjcMmd1FFlpwg9igImmD7YZiK7oMcGgpTp0vxQsRIKpBoZrHnE6ImeERsVHASjWUz/8C5szqNY/QdkV2XXfdkdtJ29ROPqMYWNtdFyE8tBhy5xnYl0POOXRRX1gGY/7/DAKbGY24dhbRiElc95HgIF//kg3rQtFofElUyWCSIgSAXlSG6Ok5CKh0FWMo4WQ6av50ABfCXJNUSsC0+Bei1x0+mcCZRaOwGhNKgML08UozlS8DeEQfOfSeusvEYqAVH04UHjH1k/XVoGefFGeRwLc7MX1ZmKDVEFiUDjGGArRHSY2rePq+Q9bhLZCcfeNbZxrGwBIUdMIyTCXQDURMNcD078BwJ3RNlnAtk9qv+iorxZJLhZf0FbFmgzs44SRecDIsVnzCs5k+I1umzxrz5AYUHE6WhGzdgRGs7ssjZ4ZwW8v9GVo4CrHtmH7VGGbWHVYdEBmnh/UQs1bqVeyO7N9DLiOblmc=
+  file: "${PROJECT}-${VERSION}.zip"
+  on:
+    tag: true
+    all_branches: true
+    repo: elespejo/dns-proxy
