@@ -12,7 +12,7 @@
 [![Docker Automated build](https://img.shields.io/docker/automated/elespejo/dns-proxy-x86.svg)](https://hub.docker.com/r/elespejo/dns-proxy-x86/)
 [![Docker Build Status](https://img.shields.io/docker/build/elespejo/dns-proxy-x86.svg)](https://hub.docker.com/r/elespejo/dns-proxy-x86/builds/)
 ![GitHub](https://img.shields.io/github/license/elespejo/dns-proxy.svg)
-![Travis (.org) branch](https://img.shields.io/travis/elespejo/dns-proxy/develop.svg)
+![Travis (.org) branch](https://img.shields.io/travis/elespejo/dns-proxy.svg)
 
 
 # Deployment (for end user)
