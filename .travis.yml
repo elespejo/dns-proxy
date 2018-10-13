@@ -3,7 +3,6 @@ sudo: required
 dist: trusty
 env:
   matrix:
-  - ARCH=armv6
   - ARCH=x86
   global:
   - secure: CNSgZHZciOv51fnflmsCMetkWOC09tNdMwHvnvmHVClrri1JgJkXA0Z6bM/pB9kwDum+3hhpLch4uW4TDQqszbe+F3WgZNIaZ7D/unA6kmgIywMnbhKwHc7XE2UG478cIA6OqQLWwFalMiHCKiBouEdvU/a+fGXLy+myMPRu8CkvBsP9JpXqzSfxuerRuFfr13OwxZyF4O1A8XB7/WvnbRZ8TwWzKzHAcLHXT/UpI8EcQukNfkQSDZIgH9ZuozlXZSIw05xAH8WR7rV2YvG43cwfg26cooJwhepylEaNGxu3QMcFXuRKslgS02Qyyy63m3C0+/9fdNy1fuDr4C2XERVr3dlyGRTptg2ImyJbvgeFbiTx0DsuluMFBoA4Nu6MBEYvM6AVSQsDmt/3oTgGEvrNXHQ+oXNZllcvyi6/VGQ2qlH48MeS1xO0WzyfszwCWRDOdHXG5LcysWnL52p9vMj0u0X3FYxXfQqGPrt0BnpBPwOz2bvsjC5UKGkxFBTEjGS2crZCke6Hr8uHDSLxgvkKxb8U0kcDEoa17VZKH9fzqZsh9dMPy4qyAyFrC8WBMFCQz6Lf8UX69ZU4ZR89s4kEx2i6lS4gLm90lZLcs+eySdZ9F9Ny/YrvpwE2xnOtJxYHyS52XAHX/AGaqs5lSOzyiSPqf0fAA6L/DBX16CA=
@@ -21,12 +20,12 @@ script:
 - make mk-deployment VERSION=$TRAVIS_TAG
 deploy:
 - provider: script
-  script: make deploy USER=$DOCKER_USER PASS=$DOCKER_PASS ARCH=$ARCH TAG=$TRAVIS_BRANCH
+  script: make pushtohub USER=$DOCKER_USER PASS=$DOCKER_PASS ARCH=$ARCH TAG=$TRAVIS_BRANCH
   on:
     all_branches: true
     condition: "$TRAVIS_BRANCH =~ ^master|develop$"
 - provider: script
-  script: make deploy USER=$DOCKER_USER PASS=$DOCKER_PASS ARCH=$ARCH TAG=$TRAVIS_TAG
+  script: make pushtohub USER=$DOCKER_USER PASS=$DOCKER_PASS ARCH=$ARCH TAG=$TRAVIS_TAG
   on:
     tags: true
     all_branches: true
