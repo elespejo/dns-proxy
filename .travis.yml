@@ -32,7 +32,8 @@ deploy:
 - provider: release
   prerelease: true
   skip_cleanup: true
-  file: dns-proxy-$TRAVIS_TAG.zip
+  file_glob: true
+  file: "./*.zip" 
   on:
     tags: true
     all_branches: true
