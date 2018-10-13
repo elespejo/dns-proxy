@@ -17,55 +17,42 @@
 
 # Deployment (for end user)
 
-### Through script
-
-* Fetch the code
-  ```
-  git clone https://github.com/meninasx86/dns-proxy.git
-  ```
-
-* Start dns proxy
-  ```
-  ./ctl start <WAN> <PORT RANGE>
-  ```
-
-  in which, 
-    * `WAN` is the WAN interface in the VPS 
-    * `PORTRANGE` is the port range in syntax `start_port:end_port` 
-
-  eg,
-
+### Download and unzip
+* Check the [release](https://github.com/elespejo/dns-proxy/releases) 
+* Choose the version you need, mostly the latest one, download `dns-proxy-[VERSION].zip` by following options:
+  * from the web
+  * from command line, e.g, download version `0.0.6` 
     ```
-    ./ctl start eth0 12345:12350 
-    ```
+    wget https://github.com/elespejo/dns-proxy/releases/download/0.0.6/dns-proxy-0.0.6.zip
+    ``` 
+* Unzip
+```
+unzip dns-proxy-0.0.6.zip
+```
+The unzipped folder is called `imageAPI`
 
-* Check the status
-  ```
-  ./ctl status
-  ```
+### Configurate dns-proxy
+```
+cd imageAPI
+make config WAN=eth0 DNSPORT=12340:12350 NAME=dnsproxy
+```
+* `WAN` is the interface to accept dns request
+* `DNSPORT` is the port range to accept dns request
 
-* Stop dns proxy
-  ```
-  ./ctl stop
-  ```
+### Start dns-proxy service
+```
+make start NAME=dnsproxy
+```
 
-### Through docker cli
+### Check the status of dns-proxy service
+```
+make status NAME=dnsproxy
+```
 
-* Start dns proxy 
-  ```
-  docker run -itd --restart=always --cap-add=NET_ADMIN --network=host --name dns_proxy --privileged -e WAN=${WAN} -e DNSPORT=${PORTRANGE} meninasx86/dns-proxy:test 
-  ``` 
-
-  in which, 
-
-    * `${WAN}` is the WAN interface in the VPS 
-    * `${PORTRANGE}` is the port range in syntax `start_port:end_port` 
-
-* Stop 
-  ```
-  docker exec -it dns_proxy ./clean 
-  ```
-
+### Stop the dns-proxy service
+```
+make stop NAME=dnsproxy
+```
 # Getting Started (for developer)
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. 
@@ -77,13 +64,13 @@ These instructions will get you a copy of the project up and running on your loc
 ### Build
 
 ```
-./build
+make mk-image
 ```
 will create a docker image locally
 
 ### Test
 
-Follow the `Deployment` steps to run the service, `./ctl status` will help you to identify whether the service is functional.
+Follow the `Deployment` steps to run the service
 
 # Logistics
 
