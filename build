@@ -1,1 +1,0 @@
-docker build -t meninasx86/dns-proxy:test .

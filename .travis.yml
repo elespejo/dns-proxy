@@ -1,26 +1,42 @@
 language: generic
-sudo: false
+sudo: required
 dist: trusty
+env:
+  matrix:
+  - ARCH=armv6
+  - ARCH=x86
+  global:
+  - secure: CNSgZHZciOv51fnflmsCMetkWOC09tNdMwHvnvmHVClrri1JgJkXA0Z6bM/pB9kwDum+3hhpLch4uW4TDQqszbe+F3WgZNIaZ7D/unA6kmgIywMnbhKwHc7XE2UG478cIA6OqQLWwFalMiHCKiBouEdvU/a+fGXLy+myMPRu8CkvBsP9JpXqzSfxuerRuFfr13OwxZyF4O1A8XB7/WvnbRZ8TwWzKzHAcLHXT/UpI8EcQukNfkQSDZIgH9ZuozlXZSIw05xAH8WR7rV2YvG43cwfg26cooJwhepylEaNGxu3QMcFXuRKslgS02Qyyy63m3C0+/9fdNy1fuDr4C2XERVr3dlyGRTptg2ImyJbvgeFbiTx0DsuluMFBoA4Nu6MBEYvM6AVSQsDmt/3oTgGEvrNXHQ+oXNZllcvyi6/VGQ2qlH48MeS1xO0WzyfszwCWRDOdHXG5LcysWnL52p9vMj0u0X3FYxXfQqGPrt0BnpBPwOz2bvsjC5UKGkxFBTEjGS2crZCke6Hr8uHDSLxgvkKxb8U0kcDEoa17VZKH9fzqZsh9dMPy4qyAyFrC8WBMFCQz6Lf8UX69ZU4ZR89s4kEx2i6lS4gLm90lZLcs+eySdZ9F9Ny/YrvpwE2xnOtJxYHyS52XAHX/AGaqs5lSOzyiSPqf0fAA6L/DBX16CA=
+  - secure: yNo4syx5Rrn4sc2Akccu8/l9GaiAcV/EuqFdhNplZuxlYAnyfo9k8CZqD0rBHm6BTaREU+usQD2iDaS9Zqmo08GiPi75RY8yvcmQCSlS90/8C3BDB+yQEQd0tbWNf9xS4z+xbAB9LZVZ3o+ohCQ9Mqbsx6j/PSV25J65zZNA4yofrwJy8Y2WONpXw2Ul1eIyQI9sTtSUP+5BymjluHSNb4QzMaT5y5UrO98dOsW7YDx4zuEmG+9+FdsZ3xtq3v2zzyEVMt4clqOn6Bt6IZmUmLl9E7wJzKAdJuzFOTrDCr85Vb1vX3qsWOBTJIiYrfHA6s0PzTlf7NTOGkaro/waUQUgx2YIoUILVg5Kr0FHPL2EOOZ0ZZunw2RWIARaQlNKJDjCXSRWmBJyu0L9qOk7qKtXtLlC+kUHAEiV7/z1FK33akKShdx2wid8ieIsSg57t5BTcZkOAjYpJpq64psnHcBPGwIftzwqmmG2bl0PjthnI6H3AlASuCcHE3Zh91bMo+sX9DGGURPfocdBcdAT7s97QHVkI8qTg+UpS8RJrbCcA09RzAL5NjVcamYPog0Tr+4D2n7FRbNZX8xg8QYwyjEV8nhGhq1rbPDWcnb9b461M4BuUKgyI2u8dVnAZJbZIzRsCYspacmXKAq1Dktwq2IEHCFualxEeb4SPJDP/qk=
+services:
+- docker
 branches:
   only:
-  - "/^\\d+(\\.\\d+){2}$/"
-env:
-  global:
-  - PROJECT="dns-proxy"
-  - VERSION="$TRAVIS_TAG"
-
+  - master
+  - develop
+  - "/^\\d+\\.\\d+(\\.\\d+)?(-\\S*)?$/"
 install: true
-
-script: 
-  - ./build_release.sh ${VERSION} 
-
+script:
+- make mk-image ARCH=$ARCH
+- make mk-deployment VERSION=$TRAVIS_TAG
 deploy:
-  provider: releases
-  skip_cleanup: true
-  api_key:
-    secure: TtDxwWg4F+qp6N0LmfasEMizwZ4xnXtfRTPF06/dFKoPTxXmLxF+jmRUz/1RQ7b/tP1L5YDb6/+DzSMmzXmuHW+yG3s7vS3rO6wGqK7cEc3xrAnhluG1Uk/54C35FYdFTXqwA+Sk7goLbGu58Ia6kDNwKkUL40L7lqipPOS6vUCbafTpyaCOgXzx5he1C/jIY3TYcE7n0JaVsjcMmd1FFlpwg9igImmD7YZiK7oMcGgpTp0vxQsRIKpBoZrHnE6ImeERsVHASjWUz/8C5szqNY/QdkV2XXfdkdtJ29ROPqMYWNtdFyE8tBhy5xnYl0POOXRRX1gGY/7/DAKbGY24dhbRiElc95HgIF//kg3rQtFofElUyWCSIgSAXlSG6Ok5CKh0FWMo4WQ6av50ABfCXJNUSsC0+Bei1x0+mcCZRaOwGhNKgML08UozlS8DeEQfOfSeusvEYqAVH04UHjH1k/XVoGefFGeRwLc7MX1ZmKDVEFiUDjGGArRHSY2rePq+Q9bhLZCcfeNbZxrGwBIUdMIyTCXQDURMNcD078BwJ3RNlnAtk9qv+iorxZJLhZf0FbFmgzs44SRecDIsVnzCs5k+I1umzxrz5AYUHE6WhGzdgRGs7ssjZ4ZwW8v9GVo4CrHtmH7VGGbWHVYdEBmnh/UQs1bqVeyO7N9DLiOblmc=
-  file: "${PROJECT}-${VERSION}.zip"
+- provider: script
+  script: make deploy USER=$DOCKER_USER PASS=$DOCKER_PASS ARCH=$ARCH TAG=$TRAVIS_BRANCH
   on:
-    tag: true
     all_branches: true
-    repo: elespejo/dns-proxy
+    condition: "$TRAVIS_BRANCH =~ ^master|develop$"
+- provider: script
+  script: make deploy USER=$DOCKER_USER PASS=$DOCKER_PASS ARCH=$ARCH TAG=$TRAVIS_TAG
+  on:
+    tags: true
+    all_branches: true
+- provider: release
+  prelease: true
+  skip_cleanup: true
+  file_glob: true
+  file: dns-proxy-$TRAVIS_TAG.zip
+  on:
+    tags: true
+    all_branches: true
+  api_key:
+    secure: Bc5wtjBKc64vge32T2tbcol0KYwFZLcINSsYwqk/alQVX4EPmhJzR9V8kdPSoG8oUHzJYQ4PSNORmK6bp8/EVLt1O8iIq1srXg6acivtxin+yKkjf8GQ0yViw1s1m0PCU4teyn7yRZ9K6hnabq1ZN4Ta+Gl/KUN4fLNWqIUxp8cwfy2meCWj3RGDudqvommdVnMpd21K2tq6mLasTqDzuugiN19RZB9bm2rhqr2wPl92zap81k1kWBgmMif07ravmHV9R2jlshaKKQSkO9+0I+Iu6S6iPb0zNrPvQ3BA3a2GoU3gbMU8+M3lLMfSd2P6IwQ2f/t8CsI0kUY4X1FWcn8foZx5/DAHNLm+PNEJl/cFxggXg31BPBDfCuqLG3a/cRudTm1du5/RuA0F7DjkDP5Zi3ZQHQwnVTC5RjUeT0eyS+XlBO6g8XBlC+TXmapq2WzlYDFROPGH75OW/5dMhMIkbWsJRiCWuySQcDeZUpC/6E0xY4o/rtV8V/9WqM77lIuHvylAA35vB0Y+9XHnAr38tyIYpCz7pn4wuwK92uPM5dxex+2b94t7W/Q2LfUlsIa9CtLXAUgTxPbjpJXkCQT4U4a3J/rJqxWJdQplbc3vgne3DHUDQiwRwU7BfNEzGNpGLNCJ5N/jQKEQbC3vC3iWeYfy5FHGU8Fx1dmt2go=
