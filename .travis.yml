@@ -29,13 +29,13 @@ deploy:
   on:
     tags: true
     all_branches: true
-- provider: release
+- provider: releases
   prerelease: true
   skip_cleanup: true
+  api_key:
+    secure: Bc5wtjBKc64vge32T2tbcol0KYwFZLcINSsYwqk/alQVX4EPmhJzR9V8kdPSoG8oUHzJYQ4PSNORmK6bp8/EVLt1O8iIq1srXg6acivtxin+yKkjf8GQ0yViw1s1m0PCU4teyn7yRZ9K6hnabq1ZN4Ta+Gl/KUN4fLNWqIUxp8cwfy2meCWj3RGDudqvommdVnMpd21K2tq6mLasTqDzuugiN19RZB9bm2rhqr2wPl92zap81k1kWBgmMif07ravmHV9R2jlshaKKQSkO9+0I+Iu6S6iPb0zNrPvQ3BA3a2GoU3gbMU8+M3lLMfSd2P6IwQ2f/t8CsI0kUY4X1FWcn8foZx5/DAHNLm+PNEJl/cFxggXg31BPBDfCuqLG3a/cRudTm1du5/RuA0F7DjkDP5Zi3ZQHQwnVTC5RjUeT0eyS+XlBO6g8XBlC+TXmapq2WzlYDFROPGH75OW/5dMhMIkbWsJRiCWuySQcDeZUpC/6E0xY4o/rtV8V/9WqM77lIuHvylAA35vB0Y+9XHnAr38tyIYpCz7pn4wuwK92uPM5dxex+2b94t7W/Q2LfUlsIa9CtLXAUgTxPbjpJXkCQT4U4a3J/rJqxWJdQplbc3vgne3DHUDQiwRwU7BfNEzGNpGLNCJ5N/jQKEQbC3vC3iWeYfy5FHGU8Fx1dmt2go=
   file_glob: true
   file: "./*.zip" 
   on:
     tags: true
     all_branches: true
-  api_key:
-    secure: Bc5wtjBKc64vge32T2tbcol0KYwFZLcINSsYwqk/alQVX4EPmhJzR9V8kdPSoG8oUHzJYQ4PSNORmK6bp8/EVLt1O8iIq1srXg6acivtxin+yKkjf8GQ0yViw1s1m0PCU4teyn7yRZ9K6hnabq1ZN4Ta+Gl/KUN4fLNWqIUxp8cwfy2meCWj3RGDudqvommdVnMpd21K2tq6mLasTqDzuugiN19RZB9bm2rhqr2wPl92zap81k1kWBgmMif07ravmHV9R2jlshaKKQSkO9+0I+Iu6S6iPb0zNrPvQ3BA3a2GoU3gbMU8+M3lLMfSd2P6IwQ2f/t8CsI0kUY4X1FWcn8foZx5/DAHNLm+PNEJl/cFxggXg31BPBDfCuqLG3a/cRudTm1du5/RuA0F7DjkDP5Zi3ZQHQwnVTC5RjUeT0eyS+XlBO6g8XBlC+TXmapq2WzlYDFROPGH75OW/5dMhMIkbWsJRiCWuySQcDeZUpC/6E0xY4o/rtV8V/9WqM77lIuHvylAA35vB0Y+9XHnAr38tyIYpCz7pn4wuwK92uPM5dxex+2b94t7W/Q2LfUlsIa9CtLXAUgTxPbjpJXkCQT4U4a3J/rJqxWJdQplbc3vgne3DHUDQiwRwU7BfNEzGNpGLNCJ5N/jQKEQbC3vC3iWeYfy5FHGU8Fx1dmt2go=
