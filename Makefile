@@ -22,16 +22,25 @@ clean-image:
 	docker rmi $(OWNER)/$(REPO)-$(ARCH)
 
 
-.PHONY: mk-deployment clean-deployment
-mk-deployment: $(DEPLOYMENT)
-	sed -i s+VERSION=.*+VERSION=$(VERSION)+g $(DEPLOYMENT)/temp.env
-	mkdir imageAPI 
-	cp $(DEPLOYMENT)/docker-compose.yml $(DEPLOYMENT)/temp.env $(DEPLOYMENT)/Makefile imageAPI/
-	zip -r $(REPO)-$(VERSION).zip imageAPI
-	rm -rf imageAPI
+.PHONY: mk-imageAPI-x86 mk-confgenerator mk-deployment clean-deployment
+mk-imageAPI-x86: $(DEPLOYMENT)/imageAPI-x86
+	mkdir $(REPO)-imageAPI
+	cp $(DEPLOYMENT)/imageAPI-x86/* $(REPO)-imageAPI/
+	sed -i s+VERSION=.*+VERSION=$(VERSION)+g $(REPO)-imageAPI/temp.env
+	zip -r $(REPO)-imageAPI-x86-$(VERSION).zip $(REPO)-imageAPI
+	rm -rf $(REPO)-imageAPI
 
-clean-deployment: $(REPO)-$(VERSION).zip
-	rm $(REPO)-$(VERSION).zip
+mk-confgenerator: $(DEPLOYMENT)/confgenerator
+	mkdir $(REPO)-confgenerator
+	cp -r $(DEPLOYMENT)/confgenerator/* $(REPO)-confgenerator/
+	zip -r $(REPO)-confgenerator-$(VERSION).zip $(REPO)-confgenerator
+	rm -rf $(REPO)-confgenerator
+
+mk-deployment: mk-imageAPI-x86 mk-confgenerator
+
+clean-deployment: 
+	rm $(REPO)-imageAPI-x86-$(VERSION).zip
+	rm $(REPO)-confgenerator-$(VERSION).zip
 
 
 .PHONY: pushtohub
