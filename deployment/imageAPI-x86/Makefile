@@ -5,9 +5,7 @@ ENV=$(CURDIR)/.env
 .PHONY: config
 config:
 	cp $(ENV_TEMP) $(ENV)
-	# add extra env variables
-	echo "DNSPORT=\"$(DNSPORT)\"" >> $(ENV)
-	echo "WAN=\"$(WAN)\"" >> $(ENV)
+	cat $(CONFIG_ENV) >> $(ENV)
 	cat $(ENV)
 	mkdir -p $(COMP_DIR)
 	docker-compose -p $(NAME) -f $(CURDIR)/docker-compose.yml config | tee $(COMP_DIR)/$(NAME).yml
