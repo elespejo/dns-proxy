@@ -1,2 +1,2 @@
-wan: enp0s25
-port: 12345:12356
+WAN: enp0s25
+DNSPORT: 12345:12356
