@@ -1,5 +1,10 @@
-dns-proxy*.zip
-compose
-imageAPI
 
+compose
+
+# build
+dns-proxy*.zip
+dns-proxy-imageAPI
+dns-proxy-confgenrator
+
+# cache
 __pycache__/
