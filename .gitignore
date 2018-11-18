@@ -1,3 +1,5 @@
 dns-proxy*.zip
 compose
 imageAPI
+
+__pycache__/
