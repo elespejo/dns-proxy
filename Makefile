@@ -22,12 +22,12 @@ clean-image:
 	docker rmi $(OWNER)/$(REPO)-$(ARCH)
 
 
-.PHONY: mk-imageAPI-x86 mk-confgenerator mk-deployment clean-deployment
-mk-imageAPI-x86: $(DEPLOYMENT)/imageAPI-x86
+.PHONY: mk-imageAPI mk-confgenerator mk-deployment clean-deployment
+mk-imageAPI: $(DEPLOYMENT)/imageAPI
 	mkdir $(REPO)-imageAPI
-	cp $(DEPLOYMENT)/imageAPI-x86/* $(REPO)-imageAPI/
+	cp $(DEPLOYMENT)/imageAPI/* $(REPO)-imageAPI/
 	sed -i s+VERSION=.*+VERSION=$(VERSION)+g $(REPO)-imageAPI/temp.env
-	zip -r $(REPO)-imageAPI-x86-$(VERSION).zip $(REPO)-imageAPI
+	zip -r $(REPO)-imageAPI-$(VERSION).zip $(REPO)-imageAPI
 	rm -rf $(REPO)-imageAPI
 
 mk-confgenerator: $(DEPLOYMENT)/confgenerator
@@ -36,10 +36,10 @@ mk-confgenerator: $(DEPLOYMENT)/confgenerator
 	zip -r $(REPO)-confgenerator-$(VERSION).zip $(REPO)-confgenerator
 	rm -rf $(REPO)-confgenerator
 
-mk-deployment: mk-imageAPI-x86 mk-confgenerator
+mk-deployment: mk-imageAPI mk-confgenerator
 
 clean-deployment: 
-	rm $(REPO)-imageAPI-x86-$(VERSION).zip
+	rm $(REPO)-imageAPI-$(VERSION).zip
 	rm $(REPO)-confgenerator-$(VERSION).zip
 
 
