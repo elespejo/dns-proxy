@@ -26,8 +26,10 @@ restart: $(COMP_DIR)/$(NAME).yml
 
 .PHONY: status
 status: $(COMP_DIR)/$(NAME).yml
-	docker-compose -p $(NAME) -f $(COMP_DIR)/$(NAME).yml ps
-	docker-compose -p $(NAME) -f $(COMP_DIR)/$(NAME).yml logs
+	docker-compose -p $(NAME) -f $(COMP_DIR)/$(NAME).yml ps || true
+	docker-compose -p $(NAME) -f $(COMP_DIR)/$(NAME).yml logs || true
+	sudo iptables -t nat -L PREROUTING -nv | grep 8.8.8.8
+	sudo iptables -t nat -L POSTROUTING -nv 
 
 .PHONY: list
 list: $(COMP_DIR)
