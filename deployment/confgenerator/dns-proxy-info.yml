@@ -1,2 +1,2 @@
-wan:
-port:
+wan: enp0s25
+port: 12345:12356
