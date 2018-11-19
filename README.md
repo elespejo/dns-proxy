@@ -12,63 +12,8 @@
 ![GitHub](https://img.shields.io/github/license/elespejo/dns-proxy.svg)
 ![Travis (.org) branch](https://img.shields.io/travis/elespejo/dns-proxy.svg)
 
-
-# Deployment (for end user)
-
-### Download and unzip
-* Check the [release](https://github.com/elespejo/dns-proxy/releases) 
-* Choose the version you need, mostly the latest one, download `dns-proxy-[VERSION].zip` by following options:
-  * from the web
-  * from command line, e.g, download version `0.0.6` 
-    ```
-    wget https://github.com/elespejo/dns-proxy/releases/download/0.0.6/dns-proxy-0.0.6.zip
-    ``` 
-* Unzip
-```
-unzip dns-proxy-0.0.6.zip
-```
-The unzipped folder is called `imageAPI`
-
-### Configurate dns-proxy
-```
-cd imageAPI
-make config WAN=eth0 DNSPORT=12340:12350 NAME=dnsproxy
-```
-* `WAN` is the interface to accept dns request
-* `DNSPORT` is the port range to accept dns request
-
-### Start dns-proxy service
-```
-make start NAME=dnsproxy
-```
-
-### Check the status of dns-proxy service
-```
-make status NAME=dnsproxy
-```
-
-### Stop the dns-proxy service
-```
-make stop NAME=dnsproxy
-```
-# Getting Started (for developer)
-
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. 
-
-### Prerequisites
-
-`Docker` should be installed
-
-### Build
-
-```
-make mk-image
-```
-will create a docker image locally
-
-### Test
-
-Follow the `Deployment` steps to run the service
+# User manual
+More detail see the github pages [here](https://elespejo.github.io/dns-proxy/).
 
 # Logistics
 
@@ -84,6 +29,7 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 ### Authors
 
 * **mateomartin1998** - *Initial work* - [mateomartin1998](https://github.com/mateomartin1998)
+* **Valerio-Perez** - *Improvement* - [Valerio-Perez](https://github.com/Valerio-Perez)
 
 See also the list of [contributors](https://github.com/elespejo/dns-proxy/graphs/contributors) who participated in this project.
 
