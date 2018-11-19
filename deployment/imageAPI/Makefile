@@ -29,7 +29,7 @@ status: $(COMP_DIR)/$(NAME).yml
 	docker-compose -p $(NAME) -f $(COMP_DIR)/$(NAME).yml ps || true
 	docker-compose -p $(NAME) -f $(COMP_DIR)/$(NAME).yml logs || true
 	sudo iptables -t nat -L PREROUTING -nv | grep 8.8.8.8
-	sudo iptables -t nat -L POSTROUTING -nv 
+	sudo iptables -t nat -L POSTROUTING -nv | grep 8.8.8.8
 
 .PHONY: list
 list: $(COMP_DIR)
