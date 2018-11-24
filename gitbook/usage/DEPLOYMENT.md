@@ -75,6 +75,10 @@ services:
     tty: true
 version: '3.0'
 ```
+For testing configed instance , use another makefile target 'test_config':
+```bash
+make test_config NAME=[NAME]
+```
 
 ### Start the service
 Start the service with the name you specified in the config step above.
