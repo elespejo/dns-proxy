@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Generate config env · GitBook</title>
+        <title>Work flow · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,10 +57,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="DEPLOYMENT.html" />
+    <link rel="next" href="../CHANGELOG.html" />
     
     
-    <link rel="prev" href="DEPENDENCY.html" />
+    <link rel="prev" href="../usage/DEPLOYMENT.html" />
     
 
     </head>
@@ -109,9 +109,9 @@
         
         
     
-        <li class="chapter " data-level="2.1" data-path="TOPOLOGY.html">
+        <li class="chapter " data-level="2.1" data-path="../usage/TOPOLOGY.html">
             
-                <a href="TOPOLOGY.html">
+                <a href="../usage/TOPOLOGY.html">
             
                     
                     Topology
@@ -122,9 +122,9 @@
             
         </li>
     
-        <li class="chapter " data-level="2.2" data-path="DEPENDENCY.html">
+        <li class="chapter " data-level="2.2" data-path="../usage/DEPENDENCY.html">
             
-                <a href="DEPENDENCY.html">
+                <a href="../usage/DEPENDENCY.html">
             
                     
                     Dependency
@@ -142,9 +142,9 @@
         
         
     
-        <li class="chapter active" data-level="3.1" data-path="GENCONF.html">
+        <li class="chapter " data-level="3.1" data-path="../usage/GENCONF.html">
             
-                <a href="GENCONF.html">
+                <a href="../usage/GENCONF.html">
             
                     
                     Generate config env
@@ -155,9 +155,9 @@
             
         </li>
     
-        <li class="chapter " data-level="3.2" data-path="DEPLOYMENT.html">
+        <li class="chapter " data-level="3.2" data-path="../usage/DEPLOYMENT.html">
             
-                <a href="DEPLOYMENT.html">
+                <a href="../usage/DEPLOYMENT.html">
             
                     
                     Deployment
@@ -175,9 +175,9 @@
         
         
     
-        <li class="chapter " data-level="4.1" data-path="../develop/WORKFLOW.html">
+        <li class="chapter active" data-level="4.1" data-path="WORKFLOW.html">
             
-                <a href="../develop/WORKFLOW.html">
+                <a href="WORKFLOW.html">
             
                     
                     Work flow
@@ -238,7 +238,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Generate config env</a>
+        <a href=".." >Work flow</a>
     </h1>
 </div>
 
@@ -253,51 +253,33 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="generate-configuration">Generate configuration</h1>
-<h3 id="download-the-configuration-generator">Download the configuration generator</h3>
-<p>You can download the generator package from web page or command line.</p>
-<ul>
-<li><p>From web:<br>  Go to the <a href="https://github.com/elespejo/dns-proxy/releases" target="_blank">release page</a> of this project and download <code>dns-proxy-confgenerator-[VERSION].zip</code>.</p>
-</li>
-<li><p>From command line:  </p>
-<pre><code class="lang-bash">  wget https://github.com/elespejo/dns-proxy/releases/download/[VERSION]/dns-proxy-confgenerator-[VERSION].zip
+                                <h1 id="work-flow">Work flow</h1>
+<h3 id="download-the-project">Download the project</h3>
+<pre><code class="lang-bash">git <span class="hljs-built_in">clone</span> https://github.com/elespejo/dns-proxy.git
+<span class="hljs-built_in">cd</span> dns-proxy/
 </code></pre>
-<p>  e.g, download configuration generator of version 0.8.2</p>
-<pre><code class="lang-bash">  wget https://github.com/elespejo/dns-proxy/releases/download/0.8.2/dns-proxy-confgenerator-0.8.2.zip
+<h3 id="build-docker-image">Build docker image</h3>
+<p>After modifying the Dockerfile, use the command below to build the docker  image:</p>
+<pre><code class="lang-bash">make mk-image ARCH=[arch]
 </code></pre>
-</li>
-</ul>
-<h3 id="unzip">Unzip</h3>
-<pre><code class="lang-bash">unzip dns-proxy-confgenerator-[VERSION].zip
+<p>The <code>arch</code> can be <code>x86</code>.
+This action build a docker image named <code>elespejo/dns-proxy-[arch]:latest</code> by using the resource in directory <code>image</code>.</p>
+<h3 id="clean-docker-image">Clean docker image</h3>
+<pre><code class="lang-bash">make clean-image ARCH=[arch]
 </code></pre>
-<p>e.g:</p>
-<pre><code class="lang-bash">unzip dns-proxy-confgenerator-0.8.2.zip
-<span class="hljs-built_in">cd</span> dns-proxy-confgenerator/
+<p>This action remove the docker image named <code>elespejo/dns-proxy-[arch]:latest</code>.</p>
+<h3 id="build-dns-proxy-x86-image-api">Build dns-proxy x86 image API</h3>
+<pre><code class="lang-bash">make mk-imageAPI VERSION=[version]
 </code></pre>
-<h3 id="modify-the-conf-info">Modify the conf-info</h3>
-<p>The template conf-info is the <code>dns-proxy-info.yml</code> in unzipped confgenerator package.</p>
-<pre><code class="lang-bash">ls dns-proxy-confgenerator/
-confgenerator  dns-proxy-info.yml
+<h3 id="build-configuration-generator">Build configuration generator</h3>
+<pre><code class="lang-bash">make mk-confgenerator VERSION=[version]
 </code></pre>
-<p>Modify the conf-info <code>dns-proxy-info.yml</code>.</p>
-<pre><code class="lang-yaml"><span class="hljs-comment"># dns-proxy-info.yml</span>
-<span class="hljs-attr">WAN:</span> enp0s25
-<span class="hljs-attr">DNSPORT:</span> <span class="hljs-number">12345</span>:<span class="hljs-number">12356</span>
+<h3 id="build-all-package">Build all package</h3>
+<pre><code class="lang-bash">make mk-deployment VERSION=[version]
 </code></pre>
-<p>Explanation of environment variables:</p>
-<ul>
-<li>[WAN] : The interface name of your machine&apos;s wan.</li>
-<li>[DNSPORT] : The range of ports that you want to expose as a dns port.</li>
-</ul>
-<h3 id="generate-configuration">Generate configuration</h3>
-<pre><code>python -m confgenerator.cli -f [conf-info path] -d [configuration path]
-</code></pre><ul>
-<li>[conf-info path] : the absolute path of conf-info file.</li>
-<li>[configuration path] : the directory path of generated configuration.</li>
-</ul>
-<p>e.g:</p>
-<pre><code>python -m confgenerator.cli -f ~/dns-proxy-confgenerator/dns-proxy-info.yml -d ~/dns-proxy-config/
-</code></pre><p>The configurations are generated in <code>~/dns-proxy-config/</code>.</p>
+<h3 id="build-gitbook">Build gitbook</h3>
+<p>```bash
+make mk-book</p>
 
                                 
                                 </section>
@@ -325,12 +307,12 @@ confgenerator  dns-proxy-info.yml
 
             
                 
-                <a href="DEPENDENCY.html" class="navigation navigation-prev " aria-label="Previous page: Dependency">
+                <a href="../usage/DEPLOYMENT.html" class="navigation navigation-prev " aria-label="Previous page: Deployment">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="DEPLOYMENT.html" class="navigation navigation-next " aria-label="Next page: Deployment">
+                <a href="../CHANGELOG.html" class="navigation navigation-next " aria-label="Next page: Change log">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -341,7 +323,7 @@ confgenerator  dns-proxy-info.yml
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Generate config env","level":"3.1","depth":1,"next":{"title":"Deployment","level":"3.2","depth":1,"path":"usage/DEPLOYMENT.md","ref":"usage/DEPLOYMENT.md","articles":[]},"previous":{"title":"Dependency","level":"2.2","depth":1,"path":"usage/DEPENDENCY.md","ref":"usage/DEPENDENCY.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"usage/GENCONF.md","mtime":"2018-11-19T07:34:36.717Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-11-24T07:35:35.845Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Work flow","level":"4.1","depth":1,"next":{"title":"Change log","level":"5.1","depth":1,"path":"CHANGELOG.md","ref":"CHANGELOG.md","articles":[]},"previous":{"title":"Deployment","level":"3.2","depth":1,"path":"usage/DEPLOYMENT.md","ref":"usage/DEPLOYMENT.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"develop/WORKFLOW.md","mtime":"2018-11-24T07:19:47.003Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-11-24T07:35:35.845Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

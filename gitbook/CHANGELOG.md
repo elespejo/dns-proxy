@@ -1,3 +1,15 @@
+# 0.1.5: add test interface
+
+### Update gitbook:
+1. update change log
+2. add workflow doc
+3. update deployement
+
+### Update imageAPI:
+1. add target 'test_config'
+2. check if compose file exists when remove
+
+
 # 0.1.3: Add confgenerator.
 
 ### Add initial confgenerator
