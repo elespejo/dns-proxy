@@ -1,4 +1,4 @@
-# 0.1.5: add test interface
+# 0.1.7: add test interface
 
 ### Update gitbook:
 1. update change log
@@ -7,7 +7,10 @@
 
 ### Update imageAPI:
 1. add target 'test_config'
-2. check if compose file exists when remove
+2. add target 'test_start'
+3. add target 'test_stop'
+4. add target 'test_restart'
+5. add target 'test_remove'
 
 
 # 0.1.3: Add confgenerator.

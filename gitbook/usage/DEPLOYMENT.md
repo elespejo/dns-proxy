@@ -14,9 +14,9 @@ wget https://github.com/elespejo/dns-proxy/releases/download/[VERSION]/dns-proxy
   * VERSION : the release tag  
   * ARCH : the architecture of your machine 
 
-  e.g : Deploy a dns-proxy on a x86 machine with the release 0.1.3 by executing
+  e.g : Deploy a dns-proxy on a x86 machine with the release 0.1.7 by executing
   ```bash
-  wget https://github.com/elespejo/dns-proxy/releases/download/0.1.3/dns-proxy-x86-0.1.3.zip
+  wget https://github.com/elespejo/dns-proxy/releases/download/0.1.7/dns-proxy-x86-0.1.7.zip
   ```
 
 ### Unzip
@@ -68,7 +68,7 @@ services:
     environment:
       DNSPORT: 12345:12356
       WAN: enp0s25
-    image: elespejo/dns-proxy-x86:0.1.3
+    image: elespejo/dns-proxy-x86:0.1.7
     network_mode: host
     privileged: true
     restart: unless-stopped
