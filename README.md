@@ -1,5 +1,5 @@
 
-[![Alt text](https://www.lucidchart.com/publicSegments/view/fd12f5ad-ac4c-4e36-99d1-d806c6b07ae0/image.png)](https://www.lucidchart.com/publicSegments/view/fd12f5ad-ac4c-4e36-99d1-d806c6b07ae0/image.png)
+[![Alt text](https://www.lucidchart.com/publicSegments/view/73a761f7-0ef4-44dd-b360-e919082493be/image.png)](https://www.lucidchart.com/publicSegments/view/73a761f7-0ef4-44dd-b360-e919082493be/image.png)
 <h1 align="center"> dns proxy </h1>
 <p align="center">
   <b >dns-proxy is a port-forwarding solution of anti dns pollution</b>
